@@ -24,3 +24,8 @@ MyPortfolio's Cloud API is a scalable backend designed to accept and manage revi
 
 Create a .env file in the root directory and add the following variables:
   ```bash
+  PORT=5000
+  MONGO_URI=mongodb://localhost:27017/
+  JWT_SECRET=your-jwt-secret
+  JWT_REFRESH_SECRET=your-refresh-secret
+  ```
