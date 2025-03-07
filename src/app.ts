@@ -1,7 +1,7 @@
 
 import express, {Application, Request, Response}  from "express";
-import Contact from "./contact";
-import signUp from './signup'
+import Contact from "./routes/contact";
+import signUp from './routes/signup';
 import cors from "cors";
 
 const app: Application = express();
@@ -15,18 +15,18 @@ app.get("/", (req: Request, res: Response)=>{
 });
 
 app.post("/signup", async(req: Request, res: Response) => {
-    console.log("creating user")
+    console.log("creating user");
     try{
-        const{ name, password } = req.body
-        const signup = new signUp({name, password })
+        const{ name, password, email, phone } = req.body
+        const signup = new signUp({name, password, email, phone });
         await signup.save();
-        res.status(201).json({ success: true, signup})
+        res.status(201).json({ success: true, signup});
         console.log("user created successfully")
     }catch(error){
-        console.log("Error creating user ", error )
-        res.status(400).json({ success : false, error})
-    }
-})
+        console.log("Error creating user ", error );
+        res.status(400).json({ success : false, error});
+    };
+});
 
 app.post("/contact", async(req: Request, res: Response) => {
     console.log("creating contact");
@@ -40,7 +40,7 @@ app.post("/contact", async(req: Request, res: Response) => {
         console.error("Error creating contact" , error);
         res.status(400).json({ success: false, error});
         
-    }
+    };
 });
 
 export default app;
