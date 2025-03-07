@@ -1,0 +1,16 @@
+{
+    "restartable": "rs",
+    "ignore": ["dist", "spec", "node_modules/**/node_modules"],
+    "verbose": true,
+    "execMap": {
+      "ts": "tsx -r tsconfig-paths/register"
+    },
+    "events": {
+      "restart": "echo restarting app..."
+    },
+    "watch": ["src"],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json,ts"
+  }
