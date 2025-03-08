@@ -1,8 +1,19 @@
+import express, { Request, Response } from 'express';
+import Contact from '../models/contact';
 
-import ContactSchema from "../schemas/contactSchema";
-import { model } from "mongoose";
+const router = express.Router();
 
+router.post('/contact', async (req: Request, res: Response) => {
+    console.log("creating new contact");
+    try {
+        const { name, email, subject, phone, message } = req.body;
+        const contact = new Contact({ name, email, subject, phone, message });
+        await contact.save();
+        res.status(201).json({ success: true, contact });
+    } catch (error) {
+        console.error("Error creating Contact ", error);
+        res.status(400).json({ success: false, error });
+    }
+});
 
-const Contact = model("Contact", ContactSchema)
-
-export default Contact
+export default router;
